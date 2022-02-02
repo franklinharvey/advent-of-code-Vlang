@@ -7,27 +7,6 @@ struct Window {
 	c int
 }
 
-fn window_has_room(w Window) bool {
-	return w.a == 0 || w.b == 0 || w.c == 0
-}
-
-fn add_to_window(w Window, value int) ?Window {
-	if w.a == 0 {
-		return Window{value, 0, 0}
-	}
-	if w.b == 0 {
-		return Window{w.a, value, 0}
-	}
-	if w.c == 0 {
-		return Window{w.a, w.b, value}
-	}
-	return error('could not add to window')
-}
-
-fn sum_window(w Window) int {
-	return w.a + w.b + w.c
-}
-
 fn main() {
 	if !os.is_file('input.txt') {
 		println('Cannot find input')
@@ -86,4 +65,38 @@ fn extract_num_of_increases(a []int) int {
 		prev_value = i
 	}
 	return num_of_increases
+}
+
+fn window_has_room(w Window) bool {
+	return w.a == 0 || w.b == 0 || w.c == 0
+}
+
+fn add_to_window(w Window, value int) ?Window {
+	// add value to next available slot in window
+	if w.a == 0 {
+		return Window{value, 0, 0}
+	}
+	if w.b == 0 {
+		return Window{w.a, value, 0}
+	}
+	if w.c == 0 {
+		return Window{w.a, w.b, value}
+	}
+	return error('could not add to window')
+}
+
+fn sum_window(w Window) int {
+	return w.a + w.b + w.c
+}
+
+fn test() {
+	assert extract_num_of_increases([1, 2]) == 1
+	assert extract_num_of_increases([2, 1]) == 0
+	assert extract_num_of_increases([1, 2, 1]) == 1
+
+	assert window_has_room(Window{}) == true
+	assert window_has_room(Window{0, 0, 0}) == true
+	assert window_has_room(Window{1, 2, 3}) == false
+
+	assert sum_window(Window{1, 1, 1}) == 3
 }
