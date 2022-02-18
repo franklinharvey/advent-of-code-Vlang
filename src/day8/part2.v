@@ -36,7 +36,7 @@ fn (a Codex) get_chars() []string {
 }
 
 fn main() {
-	// test()
+	test()
 	if !os.is_file('input.txt') {
 		println('Cannot find input')
 	}
