@@ -25,7 +25,7 @@ fn main() {
 	first_line := lines.first()
 	instructions := extract_instructions(first_line)
 	mut boards := get_bingo_boards(lines[1..])
-	winning_board, instruction := find_winning_board(instructions, boards) ?
+	winning_board, instruction := find_winning_board(instructions, boards)?
 	sum := sum_unmarked_squares(winning_board)
 	println(sum * instruction)
 }

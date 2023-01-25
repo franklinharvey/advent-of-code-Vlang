@@ -25,7 +25,7 @@ fn extract_num_array(contents string) []int {
 			splitted << space_splitted
 		}
 	}
-	return splitted.map(strconv.atoi(it) or { panic(err.msg) })
+	return splitted.map(strconv.atoi(it) or { panic(err.msg()) })
 }
 
 fn extract_num_of_increases(a []int) int {

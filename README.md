@@ -25,7 +25,7 @@ v symlink
 Download your `input.txt` and place it in `src/day1` and then run:
 
 ```bash
-cd src/day1
+cd src/2021/day1
 
 v run part1.v
 ```
